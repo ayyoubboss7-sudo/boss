@@ -58,6 +58,202 @@
 
             </div>
 
+
+            {{-- Hero image card (même design que la section "Au cœur de votre centre d'appel") --}}
+            <div
+                class="relative
+                       group
+                       mt-12
+                       overflow-hidden
+                       rounded-3xl
+                       border border-slate-200
+                       bg-slate-900
+                       shadow-2xl">
+
+                {{-- Image --}}
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1800&q=85"
+                    alt="Équipe Arti Web au travail"
+                    class="w-full
+                           h-[360px]
+                           sm:h-[450px]
+                           lg:h-[560px]
+                           object-cover
+                           object-center
+                           call-center-image">
+
+
+                {{-- Overlay --}}
+                <div
+                    class="absolute inset-0
+                           bg-gradient-to-r
+                           from-slate-950/85
+                           via-slate-900/45
+                           to-transparent">
+                </div>
+
+
+                {{-- Content --}}
+                <div class="absolute inset-0
+                           flex items-center">
+
+                    <div class="max-w-xl px-7 sm:px-10 lg:px-14">
+
+                        {{-- Badge --}}
+                        <div
+                            class="inline-flex items-center gap-2
+                                   px-4 py-2
+                                   rounded-full
+                                   bg-white/10
+                                   border border-white/20
+                                   backdrop-blur-md
+                                   text-white
+                                   text-sm font-medium">
+
+                            <span
+                                class="w-2.5 h-2.5
+                                       rounded-full
+                                       bg-blue-400
+                                       shadow-[0_0_12px_rgba(96,165,250,0.9)]
+                                       animate-pulse">
+                            </span>
+
+                            Prise en main simple
+
+                        </div>
+
+
+                        {{-- Title --}}
+                        <h3
+                            class="mt-6
+                                   text-3xl
+                                   sm:text-4xl
+                                   lg:text-5xl
+                                   font-bold
+                                   leading-tight
+                                   tracking-tight
+                                   text-white">
+
+                            Vos appels, vos clients,
+                            <span class="block text-red-400">
+                                au même endroit.
+                            </span>
+
+                        </h3>
+
+
+                        {{-- Description --}}
+                        <p
+                            class="mt-5
+                                  max-w-lg
+                                  text-base
+                                  sm:text-lg
+                                  leading-7
+                                  text-slate-200">
+
+                            Suivez vos appels et retrouvez les informations
+                            de vos clients sans changer d'outil, dès votre
+                            première connexion.
+
+                        </p>
+
+
+                        {{-- Informations --}}
+                        <div class="mt-7 flex flex-wrap gap-3">
+
+                            {{-- Item 1 --}}
+                            <div
+                                class="inline-flex items-center gap-2
+                                       px-4 py-2.5
+                                       rounded-xl
+                                       bg-white/10
+                                       border border-white/15
+                                       backdrop-blur-md
+                                       text-white
+                                       text-sm">
+
+                                <i data-lucide="phone-call" class="w-4 h-4 text-blue-300">
+                                </i>
+
+                                Suivi des appels
+
+                            </div>
+
+
+                            {{-- Item 2 --}}
+                            <div
+                                class="inline-flex items-center gap-2
+                                       px-4 py-2.5
+                                       rounded-xl
+                                       bg-white/10
+                                       border border-white/15
+                                       backdrop-blur-md
+                                       text-white
+                                       text-sm">
+
+                                <i data-lucide="user-round" class="w-4 h-4 text-red-300">
+                                </i>
+
+                                Fiches clients
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Floating icon --}}
+                <div
+                    class="absolute
+                           top-6
+                           right-6
+                           hidden sm:flex
+                           items-center
+                           justify-center
+                           w-14 h-14
+                           rounded-2xl
+                           bg-white/10
+                           border border-white/20
+                           backdrop-blur-md
+                           text-white
+                           floating-icon">
+
+                    <i data-lucide="headphones" class="w-6 h-6">
+                    </i>
+
+                </div>
+
+
+                {{-- Bottom status --}}
+                <div
+                    class="absolute
+                           bottom-6
+                           right-6
+                           hidden md:flex
+                           items-center gap-3
+                           px-4 py-3
+                           rounded-2xl
+                           bg-white/10
+                           border border-white/20
+                           backdrop-blur-md">
+
+                    <span
+                        class="w-2.5 h-2.5
+                               rounded-full
+                               bg-green-400
+                               shadow-[0_0_10px_rgba(74,222,128,0.9)]">
+                    </span>
+
+                    <span class="text-sm font-medium text-white">
+                        Solution active
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
     </section>
