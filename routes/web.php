@@ -20,9 +20,11 @@ Route::get('/guides', function () {
 })->name('guides');
 Route::get('/statistiques', [GuideController::class, 'statistiques'])->name('statistiques');
 // routes/web.php
-Route::get('/services', fn() => view('services'))->name('services');
+Route::view('/services', 'services')->name('services');
+
+
 Route::get('/secteurs', fn() => view('secteurs'))->name('secteurs');
-Route::get('/realisations', fn() => view('realisations'))->name('realisations');
+Route::view('/realisations', 'realisations')->name('realisations');
 Route::get('/a-propos', fn() => view('apropos'))->name('apropos');
 Route::get('/blog', fn() => view('blog'))->name('blog');
 Route::get('/contact', fn() => view('contact'))->name('contact');

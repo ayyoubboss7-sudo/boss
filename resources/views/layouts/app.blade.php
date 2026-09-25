@@ -147,9 +147,9 @@
                     Blog
                 </a>
 
-                <a href="{{ route('contact') }}"
-                    class="{{ request()->routeIs('contact') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
-                    Contact
+                <a href="{{ route('support') }}"
+                    class="{{ request()->routeIs('support') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+                    Support
                 </a>
 
             </nav>
@@ -183,7 +183,7 @@
                 <a href="{{ route('realisations') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Réalisations</a>
                 <a href="{{ route('apropos') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">À propos</a>
                 <a href="{{ route('blog') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Blog</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Contact</a>
+                <a href="{{ route('support') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Support</a>
 
                 <a href="{{ route('devis') }}"
                     class="mt-2 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-red-600 text-white font-semibold">
@@ -240,7 +240,7 @@
                     <li><a href="{{ route('apropos') }}" class="hover:text-red-400 transition">À propos</a></li>
                     <li><a href="{{ route('realisations') }}" class="hover:text-red-400 transition">Réalisations</a></li>
                     <li><a href="{{ route('blog') }}" class="hover:text-red-400 transition">Blog</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-red-400 transition">Contact</a></li>
+                    <li><a href="{{ route('support') }}" class="hover:text-red-400 transition">Support</a></li>
                     <li><a href="{{ route('devis') }}" class="hover:text-red-400 transition">Demander un devis</a></li>
                 </ul>
             </div>
