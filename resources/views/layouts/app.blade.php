@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title', 'ArtiWeb — Agence digitale à Fès')</title>
+
     <meta name="description" content="@yield('meta_description', 'ArtiWeb : agence de communication et de marketing digital à Fès. Création de sites web, SEO, Google Ads, Social Ads et génération de leads.')">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -57,12 +58,23 @@
         }
 
         @keyframes preloader-spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes preloader-pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(.92); opacity: .7; }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(.92);
+                opacity: .7;
+            }
         }
 
         .scroll-reveal {
@@ -76,9 +88,15 @@
             transform: translateY(0);
         }
 
-        /* Menu mobile */
+        /* =========================================================
+           MENU MOBILE
+        ========================================================== */
+
         #mobile-menu {
-            transition: transform .3s ease, opacity .3s ease;
+            transition:
+                transform .3s ease,
+                opacity .3s ease;
+
             transform: translateY(-8px);
             opacity: 0;
             pointer-events: none;
@@ -89,255 +107,735 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* =========================================================
+           HEADER FIXE
+        ========================================================== */
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            width: 100%;
+            height: 64px;
+
+            z-index: 9990;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 1px 3px rgba(15, 23, 42, 0.04),
+                0 8px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        /*
+         * Important :
+         * Le header reste toujours fixé en haut.
+         * Le contenu commence sous le header grâce à pt-16
+         * dans <main>.
+         */
+
+        html {
+            scroll-padding-top: 64px;
+        }
+
+        body {
+            margin: 0;
+        }
     </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900">
 
-    {{-- Preloader --}}
+    {{-- =========================================================
+        PRELOADER
+    ========================================================== --}}
+
     <div id="preloader">
+
         <div class="flex flex-col items-center gap-4">
+
             <div class="preloader-ring">
+
                 <img src="{{ asset('images/logo.png') }}" alt="ArtiWeb">
+
             </div>
-            <span class="text-sm font-medium text-slate-400">Chargement...</span>
+
+            <span class="text-sm font-medium text-slate-400">
+                Chargement...
+            </span>
+
         </div>
+
     </div>
 
-    {{-- Navbar --}}
-    <header class="fixed top-0 left-0 right-0 z-50 h-16 bg-white/95 backdrop-blur border-b border-slate-200">
+
+    {{-- =========================================================
+        NAVBAR FIXE
+    ========================================================== --}}
+
+    <header id="site-header" class="site-header">
 
         <div class="h-full max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-            {{-- Logo --}}
-            <a href="{{ url('/') }}" class="flex items-center gap-3">
+            {{-- =====================================================
+                LOGO
+            ====================================================== --}}
+
+            <a href="{{ url('/') }}" class="flex items-center gap-3 shrink-0">
+
                 <img src="{{ asset('images/logo.png') }}" alt="ArtiWeb" class="h-10 w-auto object-contain">
+
             </a>
 
-            {{-- Navigation --}}
+
+            {{-- =====================================================
+                NAVIGATION DESKTOP
+            ====================================================== --}}
+
             <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
 
+                {{-- Accueil --}}
                 <a href="{{ url('/') }}"
                     class="{{ request()->is('/') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Accueil
+
                 </a>
 
+
+                {{-- Services --}}
                 <a href="{{ route('services') }}"
                     class="{{ request()->routeIs('services') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Services
+
                 </a>
 
+
+                {{-- Secteurs --}}
                 <a href="{{ route('secteurs') }}"
                     class="{{ request()->routeIs('secteurs') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Secteurs
+
                 </a>
 
+
+                {{-- Réalisations --}}
                 <a href="{{ route('realisations') }}"
                     class="{{ request()->routeIs('realisations') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Réalisations
+
                 </a>
 
+
+                {{-- À propos --}}
                 <a href="{{ route('apropos') }}"
                     class="{{ request()->routeIs('apropos') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     À propos
+
                 </a>
 
+
+                {{-- Blog --}}
                 <a href="{{ route('blog') }}"
                     class="{{ request()->routeIs('blog') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Blog
+
                 </a>
 
+
+                {{-- Contact --}}
                 <a href="{{ route('contact') }}"
                     class="{{ request()->routeIs('contact') ? 'text-red-600' : 'text-slate-600 hover:text-red-600' }} transition">
+
                     Contact
+
                 </a>
 
             </nav>
 
-            {{-- CTA + Burger --}}
+
+            {{-- =====================================================
+                CTA + BURGER
+            ====================================================== --}}
+
             <div class="flex items-center gap-3">
 
+                {{-- CTA Desktop --}}
                 <a href="{{ route('devis') }}"
                     class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition shadow-lg shadow-red-600/20">
+
                     Demander un devis
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+
+                    <i data-lucide="arrow-right" class="w-4 h-4">
+                    </i>
+
                 </a>
 
-                <button id="menu-btn"
+
+                {{-- Burger Mobile --}}
+                <button id="menu-btn" type="button" aria-label="Ouvrir le menu"
                     class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:text-red-600 hover:border-red-300 transition">
-                    <i data-lucide="menu" class="w-5 h-5" id="menu-icon-open"></i>
-                    <i data-lucide="x" class="w-5 h-5 hidden" id="menu-icon-close"></i>
+
+                    <i data-lucide="menu" class="w-5 h-5" id="menu-icon-open">
+                    </i>
+
+                    <i data-lucide="x" class="w-5 h-5 hidden" id="menu-icon-close">
+                    </i>
+
                 </button>
 
             </div>
 
         </div>
 
-        {{-- Menu mobile --}}
-        <div id="mobile-menu" class="lg:hidden absolute top-16 left-0 right-0 bg-white border-b border-slate-200 shadow-xl">
+
+        {{-- =====================================================
+            MENU MOBILE
+        ====================================================== --}}
+
+        <div id="mobile-menu"
+            class="lg:hidden absolute top-16 left-0 right-0 bg-white border-b border-slate-200 shadow-xl">
+
             <nav class="px-6 py-4 space-y-1 text-sm font-medium">
 
-                <a href="{{ url('/') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Accueil</a>
-                <a href="{{ route('services') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Services</a>
-                <a href="{{ route('secteurs') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Secteurs</a>
-                <a href="{{ route('realisations') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Réalisations</a>
-                <a href="{{ route('apropos') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">À propos</a>
-                <a href="{{ route('blog') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Blog</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">Contact</a>
+                <a href="{{ url('/') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
 
+                    Accueil
+
+                </a>
+
+
+                <a href="{{ route('services') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    Services
+
+                </a>
+
+
+                <a href="{{ route('secteurs') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    Secteurs
+
+                </a>
+
+
+                <a href="{{ route('realisations') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    Réalisations
+
+                </a>
+
+
+                <a href="{{ route('apropos') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    À propos
+
+                </a>
+
+
+                <a href="{{ route('blog') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    Blog
+
+                </a>
+
+
+                <a href="{{ route('contact') }}"
+                    class="block px-3 py-2.5 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition">
+
+                    Contact
+
+                </a>
+
+
+                {{-- CTA Mobile --}}
                 <a href="{{ route('devis') }}"
                     class="mt-2 flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-red-600 text-white font-semibold">
+
                     Demander un devis
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+
+                    <i data-lucide="arrow-right" class="w-4 h-4">
+                    </i>
+
                 </a>
 
             </nav>
+
         </div>
 
     </header>
 
 
-    {{-- Main --}}
+    {{-- =========================================================
+        MAIN
+    ========================================================== --}}
+
     <main class="pt-16">
+
         @yield('content')
+
     </main>
 
 
-    {{-- Footer --}}
+    {{-- =========================================================
+        FOOTER
+    ========================================================== --}}
+
     <footer class="bg-slate-900 text-slate-400">
 
         <div class="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-            {{-- Marque --}}
+
+            {{-- =====================================================
+                MARQUE
+            ====================================================== --}}
+
             <div>
+
                 <a href="{{ url('/') }}" class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/logo.png') }}" alt="ArtiWeb" class="h-10 w-auto object-contain brightness-0 invert">
+
+                    <img src="{{ asset('images/logo.png') }}" alt="ArtiWeb"
+                        class="h-10 w-auto object-contain brightness-0 invert">
+
                 </a>
+
                 <p class="text-sm leading-6">
+
                     Agence de communication et de marketing digital basée à Fès.
                     Nous accompagnons les entreprises marocaines et internationales
                     dans leur croissance digitale.
+
                 </p>
+
             </div>
 
-            {{-- Services --}}
+
+            {{-- =====================================================
+                SERVICES
+            ====================================================== --}}
+
             <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Services</h4>
+
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+
+                    Services
+
+                </h4>
+
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">Création de site web</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">E-commerce</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">SEO</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">Google Ads</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">Social Ads</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-red-400 transition">Génération de leads</a></li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            Création de site web
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            E-commerce
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            SEO
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            Google Ads
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            Social Ads
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('services') }}" class="hover:text-red-400 transition">
+
+                            Génération de leads
+
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
 
-            {{-- Agence --}}
+
+            {{-- =====================================================
+                AGENCE
+            ====================================================== --}}
+
             <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Agence</h4>
+
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+
+                    Agence
+
+                </h4>
+
                 <ul class="space-y-2.5 text-sm">
-                    <li><a href="{{ route('apropos') }}" class="hover:text-red-400 transition">À propos</a></li>
-                    <li><a href="{{ route('realisations') }}" class="hover:text-red-400 transition">Réalisations</a></li>
-                    <li><a href="{{ route('blog') }}" class="hover:text-red-400 transition">Blog</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-red-400 transition">Contact</a></li>
-                    <li><a href="{{ route('devis') }}" class="hover:text-red-400 transition">Demander un devis</a></li>
+
+                    <li>
+                        <a href="{{ route('apropos') }}" class="hover:text-red-400 transition">
+
+                            À propos
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('realisations') }}" class="hover:text-red-400 transition">
+
+                            Réalisations
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('blog') }}" class="hover:text-red-400 transition">
+
+                            Blog
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('contact') }}" class="hover:text-red-400 transition">
+
+                            Contact
+
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('devis') }}" class="hover:text-red-400 transition">
+
+                            Demander un devis
+
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
 
-            {{-- Contact --}}
+
+            {{-- =====================================================
+                CONTACT
+            ====================================================== --}}
+
             <div>
-                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contact</h4>
+
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
+
+                    Contact
+
+                </h4>
+
                 <ul class="space-y-3 text-sm">
+
                     <li class="flex gap-2">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+
+                        <i data-lucide="map-pin" class="w-4 h-4 text-red-500 shrink-0 mt-0.5">
+                        </i>
+
                         Fès, Maroc
+
                     </li>
+
+
                     <li class="flex gap-2">
-                        <i data-lucide="mail" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+
+                        <i data-lucide="mail" class="w-4 h-4 text-red-500 shrink-0 mt-0.5">
+                        </i>
+
                         contact@artiweb.ma
+
                     </li>
+
+
                     <li class="flex gap-2">
-                        <i data-lucide="phone" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+
+                        <i data-lucide="phone" class="w-4 h-4 text-red-500 shrink-0 mt-0.5">
+                        </i>
+
                         +212 5XX XX XX XX
+
                     </li>
+
                 </ul>
 
+
+                {{-- Social --}}
                 <div class="flex gap-3 mt-5">
-                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
-                        <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+
+                    <a href="#"
+                        class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
+
+                        <i data-lucide="facebook" class="w-4 h-4 text-white">
+                        </i>
+
                     </a>
-                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
-                        <i data-lucide="instagram" class="w-4 h-4 text-white"></i>
+
+
+                    <a href="#"
+                        class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
+
+                        <i data-lucide="instagram" class="w-4 h-4 text-white">
+                        </i>
+
                     </a>
-                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
-                        <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
+
+
+                    <a href="#"
+                        class="w-9 h-9 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-red-600 transition">
+
+                        <i data-lucide="linkedin" class="w-4 h-4 text-white">
+                        </i>
+
                     </a>
+
                 </div>
+
             </div>
 
         </div>
 
+
+        {{-- =====================================================
+            FOOTER BOTTOM
+        ====================================================== --}}
+
         <div class="border-t border-slate-800">
-            <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
-                <p>© {{ date('Y') }} ArtiWeb — Tous droits réservés</p>
+
+            <div
+                class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
+
+                <p>
+                    © {{ date('Y') }} ArtiWeb — Tous droits réservés
+                </p>
+
                 <div class="flex gap-5">
-                    <a href="#" class="hover:text-red-400 transition">Mentions légales</a>
-                    <a href="#" class="hover:text-red-400 transition">Politique de confidentialité</a>
+
+                    <a href="#" class="hover:text-red-400 transition">
+
+                        Mentions légales
+
+                    </a>
+
+                    <a href="#" class="hover:text-red-400 transition">
+
+                        Politique de confidentialité
+
+                    </a>
+
                 </div>
+
             </div>
+
         </div>
 
     </footer>
 
 
+    {{-- =========================================================
+        JAVASCRIPT
+    ========================================================== --}}
+
     <script>
+        /*
+         * =========================================================
+         * LUCIDE ICONS
+         * =========================================================
+         */
+
         lucide.createIcons();
 
-        // Menu mobile
+
+        /*
+         * =========================================================
+         * MENU MOBILE
+         * =========================================================
+         */
+
         var menuBtn = document.getElementById('menu-btn');
+
         var mobileMenu = document.getElementById('mobile-menu');
+
         var iconOpen = document.getElementById('menu-icon-open');
+
         var iconClose = document.getElementById('menu-icon-close');
 
-        menuBtn.addEventListener('click', function () {
-            var isOpen = mobileMenu.classList.toggle('menu-open');
-            iconOpen.classList.toggle('hidden', isOpen);
-            iconClose.classList.toggle('hidden', !isOpen);
-        });
 
-        // Animation au défilement
-        document.querySelectorAll('main section').forEach(function (el, i) {
-            el.classList.add('scroll-reveal');
-            el.style.transitionDelay = (i % 3) * 0.08 + 's';
-        });
+        if (menuBtn && mobileMenu && iconOpen && iconClose) {
 
-        var revealObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                }
+            menuBtn.addEventListener('click', function() {
+
+                var isOpen =
+                    mobileMenu.classList.toggle('menu-open');
+
+
+                iconOpen.classList.toggle(
+                    'hidden',
+                    isOpen
+                );
+
+
+                iconClose.classList.toggle(
+                    'hidden',
+                    !isOpen
+                );
+
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-        document.querySelectorAll('main section').forEach(function (el) {
-            revealObserver.observe(el);
-        });
 
-        // Preloader
-        window.addEventListener('load', function () {
-            var preloader = document.getElementById('preloader');
+            /*
+             * Fermer le menu mobile après clic
+             * sur un lien.
+             */
+
+            mobileMenu
+                .querySelectorAll('a')
+                .forEach(function(link) {
+
+                    link.addEventListener('click', function() {
+
+                        mobileMenu.classList.remove('menu-open');
+
+                        iconOpen.classList.remove('hidden');
+
+                        iconClose.classList.add('hidden');
+
+                    });
+
+                });
+
+        }
+
+
+        /*
+         * =========================================================
+         * ANIMATION AU DÉFILEMENT
+         * =========================================================
+         */
+
+        document
+            .querySelectorAll('main section')
+            .forEach(function(el, i) {
+
+                el.classList.add('scroll-reveal');
+
+                el.style.transitionDelay =
+                    (i % 3) * 0.08 + 's';
+
+            });
+
+
+        var revealObserver =
+            new IntersectionObserver(
+                function(entries) {
+
+                    entries.forEach(function(entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                'is-visible'
+                            );
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                }, {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -60px 0px'
+                }
+            );
+
+
+        document
+            .querySelectorAll('main section')
+            .forEach(function(el) {
+
+                revealObserver.observe(el);
+
+            });
+
+
+        /*
+         * =========================================================
+         * PRELOADER
+         * =========================================================
+         */
+
+        window.addEventListener('load', function() {
+
+            var preloader =
+                document.getElementById('preloader');
+
+
             if (preloader) {
-                setTimeout(function () {
-                    preloader.classList.add('preloader-hidden');
-                    setTimeout(function () {
+
+                setTimeout(function() {
+
+                    preloader.classList.add(
+                        'preloader-hidden'
+                    );
+
+
+                    setTimeout(function() {
+
                         preloader.remove();
+
                     }, 500);
+
                 }, 350);
+
             }
+
         });
     </script>
+
 
     @stack('scripts')
 
